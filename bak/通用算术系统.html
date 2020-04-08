@@ -7,11 +7,15 @@
   
   <title>Mike&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="通用算术系统切入点：复数的运算、表示和实现我们将设计一个复数的四则运算系统。（为了精简，下面只以加法、乘法为例演示。） 一般来说可以只用实部+虚部的形式来表示、计算，但是这里不考虑表示形式的问题，混用模+幅角的形式。 123456789(define (+c z1 z2)  (make-from-real-imag   (+ (real z1) (real z2))   (+ (imag z1)">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Mike&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/bak/%E9%80%9A%E7%94%A8%E7%AE%97%E6%9C%AF%E7%B3%BB%E7%BB%9F.html">
 <meta property="og:site_name" content="Mike&#39;s Blog">
+<meta property="og:description" content="通用算术系统切入点：复数的运算、表示和实现我们将设计一个复数的四则运算系统。（为了精简，下面只以加法、乘法为例演示。） 一般来说可以只用实部+虚部的形式来表示、计算，但是这里不考虑表示形式的问题，混用模+幅角的形式。 123456789(define (+c z1 z2)  (make-from-real-imag   (+ (real z1) (real z2))   (+ (imag z1)">
 <meta property="og:locale" content="zh">
+<meta property="article:published_time" content="2020-04-08T13:57:53.875Z">
+<meta property="article:modified_time" content="2020-04-08T13:53:54.468Z">
 <meta property="article:author" content="Mike Zheng">
 <meta name="twitter:card" content="summary">
   
@@ -62,31 +66,19 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-data-directed-programming" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/04/08/data-directed-programming/" class="article-date">
-  <time datetime="2020-04-08T13:46:33.000Z" itemprop="datePublished">2020-04-08</time>
+    <a href="/bak/%E9%80%9A%E7%94%A8%E7%AE%97%E6%9C%AF%E7%B3%BB%E7%BB%9F.html" class="article-date">
+  <time datetime="2020-04-08T13:57:53.875Z" itemprop="datePublished">2020-04-08</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/08/data-directed-programming/">「SICP 2.4」数据导向的程序设计模式</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="切入点：复数的运算、表示和实现"><a href="#切入点：复数的运算、表示和实现" class="headerlink" title="切入点：复数的运算、表示和实现"></a>切入点：复数的运算、表示和实现</h2><p>我们将设计一个复数的四则运算系统。（为了精简，下面只以加法、乘法为例演示。）</p>
+        <h1 id="通用算术系统"><a href="#通用算术系统" class="headerlink" title="通用算术系统"></a>通用算术系统</h1><h2 id="切入点：复数的运算、表示和实现"><a href="#切入点：复数的运算、表示和实现" class="headerlink" title="切入点：复数的运算、表示和实现"></a>切入点：复数的运算、表示和实现</h2><p>我们将设计一个复数的四则运算系统。（为了精简，下面只以加法、乘法为例演示。）</p>
 <p>一般来说可以只用<strong>实部+虚部</strong>的形式来表示、计算，但是这里不考虑表示形式的问题，混用<strong>模+幅角</strong>的形式。</p>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">+c</span> z1 z2)</span><br><span class="line">  (<span class="name">make-from-real-imag</span></span><br><span class="line">   (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">real</span> z1) (<span class="name">real</span> z2))</span><br><span class="line">   (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">imag</span> z1) (<span class="name">imag</span> z2))))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">*c</span> z1 z2)</span><br><span class="line">  (<span class="name">make-from-mag-ang</span></span><br><span class="line">   (<span class="name"><span class="builtin-name">*</span></span> (<span class="name">mag</span> z1) (<span class="name">mag</span> z2))</span><br><span class="line">   (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">ang</span> z1) (<span class="name">ang</span> z2))))</span><br></pre></td></tr></table></figure>
 
@@ -182,116 +174,19 @@
 <p>至于 <code>apply-generic</code> 是实现更<em>智能</em>的调用，它根据参数的类型<em>自动</em>找到对应的过程（即<em>先查行-&gt;后查列</em>的方式查找）。因为加入<strong>标识</strong>之后的数据实际的表现形式是下面这样的（<code>apply-generic</code> 只是做了解析，而不是硬编码）：</p>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">+c</span> a a)</span><br><span class="line">'(rect <span class="number">2</span> . <span class="number">4</span>)</span><br><span class="line">&gt; (*c b b)</span><br><span class="line">'(polar <span class="number">1</span> . <span class="number">1.5707963267948966</span>)</span><br><span class="line">&gt; (+c a b)</span><br><span class="line">'(rect <span class="number">1.7071067811865475</span> . <span class="number">2.7071067811865475</span>)</span><br></pre></td></tr></table></figure>
 
+<h2 id="消息传递-vs-数据导向"><a href="#消息传递-vs-数据导向" class="headerlink" title="消息传递 vs 数据导向"></a>消息传递 vs 数据导向</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/08/data-directed-programming/" data-id="ck8rf11qq0000h561av96hmbm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SICP/" rel="tag">SICP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/" rel="tag">计算机程序的构造和解释</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-picture-language" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/30/picture-language/" class="article-date">
-  <time datetime="2020-01-30T07:41:23.000Z" itemprop="datePublished">2020-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/30/picture-language/">「SICP 2.2.4」图像语言</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>racket 提供了一个包，便于学习和做2.2章里面的图形联系。下面就跟着书中的例子来熟悉这门语言。</p>
-<h2 id="基本元素"><a href="#基本元素" class="headerlink" title="基本元素"></a>基本元素</h2><p>要使用画图语言，需要在程序前面添加这两行（注意使用DrRacket），以及使用爱因斯坦来替代校长。</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#lang racket</span><br><span class="line">(<span class="name"><span class="builtin-name">require</span></span> (<span class="name">planet</span> <span class="string">"sicp.ss"</span> (<span class="string">"soegaard"</span> <span class="string">"sicp.plt"</span> <span class="number">2</span> <span class="number">1</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">;; 相对于原作里面的 wave，这个包提供了另一个基本图像 einstein</span></span><br><span class="line">einstein</span><br><span class="line"><span class="comment">;; 可以看到它作为一个图像（数据）是以 #procedure 的形式存在的</span></span><br><span class="line"><span class="comment">;; 和前面提到的 过程-数据 混淆的情况一样</span></span><br><span class="line"><span class="comment">;; 需要显式地使用 paint 过程来作画</span></span><br><span class="line">(<span class="name">paint</span> einstein)</span><br><span class="line"></span><br><span class="line"><span class="comment">;; 书中的基本例子也运行一遍</span></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> einstein2 (<span class="name">beside</span> einstein (<span class="name">flip-vert</span> einstein)))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> einstein4 (<span class="name">below</span> einstein2 einstein2))</span><br><span class="line">(<span class="name">paint</span> einstein2)</span><br><span class="line">(<span class="name">paint</span> einstein4)</span><br><span class="line"></span><br><span class="line"><span class="comment">;; 像一般过程（数据）一样抽象成更高层次</span></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">flipped-pairs</span> painter)</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">painter2</span> (<span class="name">beside</span> painter (<span class="name">flip-vert</span> painter))])</span><br><span class="line">    (<span class="name">below</span> painter2 painter2)))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> e4 (<span class="name">flipped-pairs</span> einstein))</span><br><span class="line"></span><br><span class="line"><span class="comment">;; 同样也可以递归</span></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">right-split</span> painter n)</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>)</span><br><span class="line">      painter</span><br><span class="line">      (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">smaller</span> (<span class="name">right-split</span> painter (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>))])</span><br><span class="line">        (<span class="name">beside</span> painter (<span class="name">below</span> smaller smaller)))))</span><br><span class="line">(<span class="name">paint</span> (<span class="name">right-split</span> einstein <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">up-split</span> painter n)</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>)</span><br><span class="line">      painter</span><br><span class="line">      (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">smaller</span> (<span class="name">up-split</span> painter (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>))])</span><br><span class="line">        (<span class="name">below</span> painter (<span class="name">beside</span> smaller smaller)))))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">corner-split</span> painter n)</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>)</span><br><span class="line">      painter</span><br><span class="line">      (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">up</span> (<span class="name">up-split</span> painter (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>))]</span><br><span class="line">            [<span class="name">right</span> (<span class="name">right-split</span> painter (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>))])</span><br><span class="line">        (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">tl</span> (<span class="name">beside</span> up up)]</span><br><span class="line">              [<span class="name">br</span> (<span class="name">below</span> right right)]</span><br><span class="line">              [<span class="name">corner</span> (<span class="name">corner-split</span> painter (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>))])</span><br><span class="line">          (<span class="name">beside</span> (<span class="name">below</span> painter tl)</span><br><span class="line">                  (<span class="name">below</span> br painter))))))</span><br><span class="line">(<span class="name">paint</span> (<span class="name">corner-split</span> einstein <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square-limit</span> painter n)</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">quarter</span> (<span class="name">corner-split</span> painter n)])</span><br><span class="line">    (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">half</span> (<span class="name">beside</span> (<span class="name">flip-horiz</span> quarter) quarter)])</span><br><span class="line">      (<span class="name">below</span> (<span class="name">flip-vert</span> half) half))))</span><br><span class="line">(<span class="name">paint</span> (<span class="name">square-limit</span> einstein <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="高阶操作"><a href="#高阶操作" class="headerlink" title="高阶操作"></a>高阶操作</h2><p>和前面 higher-order-procedure 一样，可以接收 painter 为参数，可以返回 painter。</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square-of-four</span> tl tr bl br)</span><br><span class="line">  (<span class="name"><span class="builtin-name">lambda</span></span> [<span class="name">painter</span>]</span><br><span class="line">    (let ([top (beside (tl painter) (<span class="name">tr</span> painter))]</span><br><span class="line">          [<span class="name">bottom</span> (<span class="name">beside</span> (<span class="name">bl</span> painter) (<span class="name">br</span> painter))])</span><br><span class="line">      (below bottom top))))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">flipped-pairs-2</span> painter)</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">combine4</span> (<span class="name">square-of-four</span> identity flip-vert</span><br><span class="line">                                  identity flip-vert)])</span><br><span class="line">    (<span class="name">combine4</span> painter)))</span><br><span class="line">(<span class="name">paint</span> (<span class="name">flipped-pairs-2</span> einstein))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">square-limit-2</span> painter n)</span><br><span class="line">  (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">combine4</span> (<span class="name">square-of-four</span> flip-horiz identity</span><br><span class="line">                                  rotate180 flip-vert)])</span><br><span class="line">    (<span class="name">combine4</span> (<span class="name">corner-split</span> painter n))))</span><br><span class="line">(<span class="name">paint</span> (<span class="name">square-limit-2</span> einstein <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/30/picture-language/" data-id="ck60fy7xh000045q28tjw9b6i" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SICP/" rel="tag">SICP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/" rel="tag">计算机程序的构造和解释</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/30/hello-world/" class="article-date">
-  <time datetime="2020-01-30T06:06:24.268Z" itemprop="datePublished">2020-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/30/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/30/hello-world/" data-id="ck60f0xfo0000p1q24a3lbrl3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/bak/%E9%80%9A%E7%94%A8%E7%AE%97%E6%9C%AF%E7%B3%BB%E7%BB%9F.html" data-id="ck8reec2y00024761f1juh3dj" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
-</article>
-
-
+    
   
-
+</article>
 
 </section>
         
